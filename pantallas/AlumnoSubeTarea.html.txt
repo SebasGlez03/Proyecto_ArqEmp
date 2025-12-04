@@ -1,0 +1,3 @@
+<input type="file" id="archivo">
+<button onclick="subir()">Subir Tarea</button>
+<script src="AlumnoSubeTarea.js"></script>

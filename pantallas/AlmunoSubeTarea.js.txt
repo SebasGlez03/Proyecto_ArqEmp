@@ -1,0 +1,29 @@
+function subir() {
+    const archivo = document.getElementById("archivo").files[0];
+
+    if (!archivo) {
+        alert("Selecciona un archivo");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const contenido = e.target.result;
+
+        let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+
+        tareas.push({
+            alumno: "Alumno Demo",
+            nombre: archivo.name,
+            descripcion: contenido.substring(0, 70) + "...",
+            materia: "Programación",
+            calificacion: null
+        });
+
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+        alert("✅ Tarea enviada");
+    };
+
+    reader.readAsText(archivo);
+}
