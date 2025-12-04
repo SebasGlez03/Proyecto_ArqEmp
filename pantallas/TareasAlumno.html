@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas - Moodle</title>
+    <link rel="stylesheet" href="TareasAlumno.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">
+            <img src="moodle-300x300.png" alt="Logo Moodle">
+            <span>Moodle</span>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="PantallaInicio.html" id="link-inicio">Inicio</a></li>
+                <li><a href="Tareas.html" class="active" id="link-tareas">Tareas</a></li>
+                <li><a href="#" class="modal-btn" data-section="Mensajes">Mensajes</a></li>
+                <li><a href="#" class="modal-btn" data-section="Notificaciones">Notificaciones</a></li>
+                <li><a href="#" class="modal-btn" data-section="Calificaciones">Calificaciones</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <h2 class="titulo-seccion">Tareas Pendientes</h2>
+
+        <div class="contenedor-tareas">
+
+            <div class="tarea-card">
+                <div class="tarea-info">
+                    <h3>Tarea #4</h3>
+                    <p>Redactar un ensayo de 2 cuartillas sobre el impacto ambiental en México.</p>
+                    <strong>Ciencias Ambientales</strong>
+                </div>
+                <button class="btn-agregar">Agregar tarea</button>
+            </div>
+
+            <div class="tarea-card">
+                <div class="tarea-info">
+                    <h3>Tarea #2</h3>
+                    <p>Hacer la pagina 46 del libro de Matematicas</p>
+                    <strong>Matematicas</strong>
+                </div>
+                <button class="btn-agregar">Agregar tarea</button>
+            </div>
+
+            <div class="tarea-card">
+                <div class="tarea-info">
+                    <h3>Tarea #3</h3>
+                    <p>Leer el capítulo 3 del libro y entregar un resumen de una cuartilla.</p>
+                    <strong>Español</strong>
+                </div>
+                <button class="btn-agregar">Agregar tarea</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Moodle © 2025 - Plataforma Educativa</p>
+        <p>Contacto: soporte@moodle.edu.mx | Tel: (644) 123-4567</p>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>En proceso</h3>
+            <p>La sección seleccionada aún está en desarrollo.</p>
+        </div>
+    </div>
+
+    <script src="TareasAlumno.js"></script>
+</body>
+</html>

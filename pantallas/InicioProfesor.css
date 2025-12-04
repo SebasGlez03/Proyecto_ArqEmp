@@ -1,0 +1,193 @@
+/* ====== ESTILOS GENERALES ====== */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f6fa;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Asegura que el contenido principal empuje al footer hacia abajo */
+main {
+    flex: 1;
+}
+
+/* ====== HEADER ====== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #002b5c;
+    padding: 10px 30px;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo span {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navbar a:hover, .navbar a.active {
+    color: #ffcd00;
+    border-bottom: 2px solid #ffcd00;
+    padding-bottom: 3px;
+}
+
+/* ====== SLIDER ====== */
+.slider {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    height: 320px;
+    margin-top: 20px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slides {
+    display: flex;
+    width: 400%;
+    animation: slideAnimation 20s infinite;
+}
+
+.slide {
+    width: 100%;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Imagen 1 (perfecta, no tocar mucho) */
+.img1 {
+    width: 80%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Imagen 2 (reducida porque se ve más grande) */
+.img2 {
+    width: 20%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Imagen 3 (un poco más alta o ancha según tu preferencia) */
+.img3 {
+    width: 12%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Imagen 4 (más pequeña para verse bien) */
+.img4 {
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Animación del slider */
+@keyframes slideAnimation {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(0); }
+    25% { transform: translateX(-100%); }
+    45% { transform: translateX(-100%); }
+    50% { transform: translateX(-200%); }
+    70% { transform: translateX(-200%); }
+    75% { transform: translateX(-300%); }
+    100% { transform: translateX(-300%); }
+}
+
+
+/* ====== FOOTER ====== */
+footer {
+    background-color: #002b5c;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    width: 100%;
+    margin-top: auto; /* empuja el footer al final */
+}
+
+/* ====== MODAL ====== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 20;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 25px;
+    width: 320px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.modal-content h3 {
+    color: #002b5c;
+}
+
+.close {
+    float: right;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #002b5c;
+}
+.close:hover {
+    color: red;
+}
+.subtitulo {
+    font-size: 0.8rem;
+    color: #ffcd00;
+}
+
+.logo-texto {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
