@@ -1,54 +1,59 @@
+// TAREAS ASIGNADAS POR DEFECTO (SIMULADAS)
+const tareasAsignadas = [
+    { nombre: "Investigación Sistemas", materia: "Informática", descripcion: "Descripción de tarea" },
+    { nombre: "Ensayo Revolución", materia: "Historia", descripcion: "Descripción de tarea" },
+    { nombre: "Ejercicios Álgebra", materia: "Matemáticas", descripcion: "Descripción de tarea" }
+];
+
 function cargarTareas() {
     const contenedor = document.getElementById("listaTareas");
     contenedor.innerHTML = "";
 
-    let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+    let tareasGuardadas = JSON.parse(localStorage.getItem("tareas")) || [];
 
-    tareas.forEach((tarea) => {
+    tareasAsignadas.forEach((tarea, index) => {
+        let tareaEntregada = tareasGuardadas.find(t => t.nombre === tarea.nombre);
+
         const div = document.createElement("div");
         div.classList.add("tarea-card");
 
         div.innerHTML = `
             <h3>${tarea.nombre}</h3>
-            <p>${tarea.descripcion}</p>
-            <strong>${tarea.materia}</strong>
-            <p>📎 Archivo: ${tarea.archivo || "No subido"}</p>
-            <p>✅ Calificación: <strong>${tarea.calificacion || "Pendiente"}</strong></p>
+            <p><strong>Materia:</strong> ${tarea.materia}</p>
+            <p><strong>Descripción:</strong> ${tarea.descripcion}</p>
+
+            ${
+                tareaEntregada
+                ? `<p>✅ Entregada | Calificación: <strong>${tareaEntregada.calificacion || "Pendiente"}</strong></p>`
+                : `<input type="file" id="archivo${index}">
+                   <button onclick="subirTarea(${index})">Subir tarea</button>`
+            }
         `;
 
         contenedor.appendChild(div);
     });
 }
 
-function agregarTarea() {
-    let nombre = document.getElementById("nombre").value;
-    let descripcion = document.getElementById("descripcion").value;
-    let materia = document.getElementById("materia").value;
-    let archivo = document.getElementById("archivo").files[0];
+function subirTarea(index) {
+    let archivo = document.getElementById(`archivo${index}`).files[0];
 
-    if (!nombre || !descripcion || !materia) {
-        alert("Completa todos los campos");
+    if (!archivo) {
+        alert("Selecciona un archivo");
         return;
     }
 
     let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
     tareas.push({
-        nombre,
-        descripcion,
-        materia,
-        archivo: archivo ? archivo.name : "Sin archivo",
+        nombre: tareasAsignadas[index].nombre,
+        materia: tareasAsignadas[index].materia,
+        descripcion: tareasAsignadas[index].descripcion,
+        archivo: archivo.name,
         calificacion: ""
     });
 
     localStorage.setItem("tareas", JSON.stringify(tareas));
-
-    alert("✅ Tarea agregada correctamente");
-
-    document.getElementById("nombre").value = "";
-    document.getElementById("descripcion").value = "";
-    document.getElementById("materia").value = "";
-    document.getElementById("archivo").value = "";
+    alert("✅ Tarea enviada correctamente");
 
     cargarTareas();
 }

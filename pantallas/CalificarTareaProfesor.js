@@ -1,47 +1,43 @@
-const lista = document.getElementById("listaTareas");
-const modal = document.getElementById("modal");
-const cerrar = document.getElementById("cerrar");
-const guardar = document.getElementById("guardar");
+document.addEventListener("DOMContentLoaded", () => cargarTareas());
 
-let tareaSeleccionada = null;
+function cargarTareas() {
+    const contenedor = document.getElementById("listaTareas");
+    contenedor.innerHTML = "";
 
-let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+    let tareas = JSON.parse(localStorage.getItem("tareas"));
 
-function mostrarTareas() {
-    lista.innerHTML = "";
-
-    tareas.forEach((t, index) => {
-        lista.innerHTML += `
-            <div class="tarea">
-                <h3>${t.nombre}</h3>
-                <p>${t.descripcion}</p>
-                <strong>${t.materia}</strong>
-                <p>Alumno: ${t.alumno}</p>
-                <p>Calificación: ${t.calificacion ?? "Sin calificar"}</p>
-                <button class="calificar-btn" onclick="abrirModal(${index})">Calificar</button>
-            </div>
-        `;
-    });
-}
-
-function abrirModal(index) {
-    tareaSeleccionada = index;
-    modal.style.display = "block";
-}
-
-cerrar.onclick = () => modal.style.display = "none";
-
-guardar.onclick = () => {
-    const cal = document.getElementById("calificacion").value;
-    if (cal === "" || cal < 0 || cal > 100) {
-        alert("Calificación inválida");
+    if (!tareas || tareas.length === 0) {
+        contenedor.innerHTML = "<p>No hay tareas entregadas aún.</p>";
         return;
     }
 
-    tareas[tareaSeleccionada].calificacion = cal;
-    localStorage.setItem("tareas", JSON.stringify(tareas));
-    modal.style.display = "none";
-    mostrarTareas();
-};
+    tareas.forEach((tarea, index) => {
+        const div = document.createElement("div");
+        div.classList.add("tarea-card");
 
-mostrarTareas();
+        div.innerHTML = `
+            <h3>${tarea.nombre}</h3>
+            <p><b>Materia:</b> ${tarea.materia}</p>
+            <p><b>Descripción:</b> ${tarea.descripcion}</p>
+            <p>📎 Archivo: ${tarea.archivo}</p>
+
+            <div style="margin-top:10px;">
+                <input type="number" min="0" max="100" id="calif${index}" value="${tarea.calificacion || ""}">
+                <button onclick="guardarCalificacion(${index})">Guardar</button>
+            </div>
+        `;
+
+        contenedor.appendChild(div);
+    });
+}
+
+function guardarCalificacion(index) {
+    let tareas = JSON.parse(localStorage.getItem("tareas"));
+
+    let input = document.getElementById(`calif${index}`);
+    tareas[index].calificacion = input.value;
+
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+
+    alert("✅ Calificación guardada correctamente");
+}

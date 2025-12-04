@@ -1,78 +1,122 @@
-body {
+/* ===== RESET ===== */
+* {
     margin: 0;
-    font-family: Arial;
-    background: #f5f6fa;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
+/* ===== BODY ===== */
+body {
+    min-height: 100vh;
+  background: #e5e7eb;
+}
+
+/* ===== HEADER ===== */
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #0d2a52;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 10px 30px;
-    background: #002b5c;
-    color: white;
+    padding: 0 40px;
+    z-index: 1000;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .logo img {
-    width: 40px;
+    height: 45px;
+}
+
+.logo span {
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 30px;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
 }
 
-.navbar .active {
+.navbar a:hover {
     color: #ffcd00;
 }
 
+/* ===== MAIN ===== */
 main {
+    padding-top: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.contenedor-tareas {
+    background: white;
+    width: 70%;
+    max-width: 900px;
+    border-radius: 15px;
     padding: 30px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.2);
 }
 
-.tarea {
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    position: relative;
-}
-
-.calificar-btn {
-    position: absolute;
-    right: 15px;
-    bottom: 15px;
-    padding: 6px 15px;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    background: rgba(0,0,0,0.4);
-    width: 100%;
-    height: 100%;
-}
-
-.modal-content {
-    background: white;
-    padding: 25px;
-    width: 300px;
-    margin: 150px auto;
+/* ===== TITULO ===== */
+.contenedor-tareas h2 {
     text-align: center;
+    margin-bottom: 25px;
+    color: #0d2a52;
 }
 
-#cerrar {
-    float: right;
+/* ===== TARJETA TAREA ===== */
+.tarea-card {
+    background: #f4f6fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.tarea-card b {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.tarea-card input {
+    width: 80px;
+    padding: 6px;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+}
+
+.tarea-card button {
+    padding: 7px 15px;
+    background: #1e4fa3;
+    color: white;
+    border: none;
+    border-radius: 6px;
     cursor: pointer;
+    margin-left: 10px;
+}
+
+.tarea-card button:hover {
+    background: #163a78;
 }
